@@ -1,4 +1,4 @@
-# Review
+# Part 1: Review
 data on cloud
 using data to change world
 data analytics for sustanability
@@ -149,6 +149,22 @@ take credit score and stereo on it
 5. Ethics/Data Privacy
 
 
+# Part 2: Exploratory Data Analysis
+
+Before you start data mining:
+
+- numeric: mean, median, standard deviation, percentiles, min value, max value
+- histogram: 
+heavy tailed distribution
+bimodal distribution
+
+discrete variables:
+- list possible values and their frequencies
+- count distinct
+- identify and frequency of most and least frequent values
+
+Text:
+- word clouds
 
 
 
