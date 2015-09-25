@@ -166,7 +166,70 @@ discrete variables:
 Text:
 - word clouds
 
+# Part 3: Data Mining
 
+## Predictive
+
+### Regression
+
+#### Least squares linear regression (LSLR)
+
+Input:
+|id | x | y | ŷ | y-ŷ|
+|p1 | 1 | 2 | 1 | 1|
+|p2 | 1 |1 | 1 | 0 |
+....
+
+make plot
+
+
+
+y- ŷ <- called residual = observed - predicted   
+
+Supose we obtain in the following linear model:       
+y = x    
+
+Sum of the squares residuals =  \sum (y- \hat{y} )^{2}           
+
+[img]http://www.sciweavers.org/tex2img.php?eq=%20%5Csum%20%28y-%20%5Chat%7By%7D%20%29%5E%7B2%7D%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0[/img]
+
+
+L.S.L.R. optimizes this metric   
+
+mean squared error (MSE) = SSQ / num of data points   
+root mean squared error (RMSE) = sqrt (MSE)    
+
+in example:   
+SSQ = 1^2 + 0^2 + (-1)^2 + 0^2 + 0^2 = 2   
+MSE = 2/5   
+RMSE = sqrt (2/5)   
+
+Residual plot y - ŷ vs x   
+
+put plot
+
+Distribution of residuals   
+
+frequency vs y - ŷ   
+
+put histogram
+
+If x and y are indeed linearly related, the distribution of residuals should be normal and centered around zero
+Also the residual plot should not have any patterns (under/over estimation)
+
+Suppose y is EXPONENTIALLY related to X
+
+put plot
+
+put residual plot
+
+### Log transform:
+
+y = b e^x
+
+ln y = ln (b e^x)
+      = ln b + ln e^x
+      = ln b + x
 
 
 
