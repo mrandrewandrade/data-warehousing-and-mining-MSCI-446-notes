@@ -232,9 +232,101 @@ ln y = ln (b e^x)
       = ln b + x
 
 
+## More on least squares
+
+- least-squares linear regression optimizes SSQ/RSS
+
+- goodness of fit
+y = m1x1 + m2x2 + .... + mxkx + b
+
+Residual Plot
+- one for each Xi
+
+Residual Distribution
+- on for each model
+
+### Another example of log transform
+
+TODO: typset the equations
 
 
+What is the point?
 
+It linearizes the model so linear regression can be used on non-linear relationships
+
+### Piecewise Linear Regeression
+
+
+- called segmented regression in R
+
+#### Example: electricity in households
+
+Corelate electricity consumption vs outdoor temperature
+
+cooling gradient -> proxy for insulation and efficiency 
+
+### Variable Selection / Feature engineering
+
+Example: movie revenue and other factors   
+What factors do you use?    
+
+Three techniques:
+
+1. Forward Selection
+Try each variable one by one and find the one the lowest sum of squares error
+- not used in practice
+
+2. Backward Selection
+Try with all the variables and remove the worse one (greedy algorithm) 
+- has python implementation
+3. Shrinkage
+LASSO: uses matrix algebra to shrink coefficient to help with eliminating 
+
+### Remove Outliers
+- can remove good data if it doesn't fit the model
+- linear regression is a model of convenient fiction
+"Linearize the model simplifes the model based on the data you have"
+
+# Part 4 
+
+## Classification
+### Baysian Classification
+
+Baye's Theorem
+
+P (A|B) = P(B|A) = P(B|A) P(A) / P(B)
+
+#### Dishonest Casino Problem
+
+- A dishonest casino has a 99% fair dice and 1% loaded dice, where:
+
+fair: (1) = P (2) = P (3) = P (4) = P(5) = P(6) = 1/6    
+
+loaded: P (1) = 0.1, P(2) = 0.1, P(3) = 0.1, P(4) = 0.1, P(5) = 0.1, P(6) = 1/2
+
+Compute P(loaded | rolled 3 consecutive times)
+
+P(A|B) = P(B | A) P(A) / P(B)
+
+= P(0.5*0.5*0.5) * P(0.01) / (1/6^3* 0.99 + 1/2^2*0.01)
+
+prior probability
+
+posterior probability
+
+What is the value of a class variable C given the values of the feature variables x through xk?
+
+P( pay off load = yes | credit = .. and marital status = .. and years with current employer = .. )
+ = P(features | class ) P (class) / P(features)
+
+Major assumption: features are independant
+
+Naive bayes -> this approach in tutorial
+
+Friday: simple example
+
+Tuesday: complicated
+ Read example on course website
 
 
 
