@@ -328,7 +328,27 @@ Friday: simple example
 Tuesday: complicated
  Read example on course website
 
+P(A|B)  = P(A) P(B|A) / P(B)
 
+num | refund | maritial status | cheat?|
+
+Use Naive Bayes to predict the value of cheat given that refund = no and M.S. = single (S)
+
+P(A|B) <- posterior probability
+P(A) <- prior
+P(b|A) <- likely hood
+
+P(cheat=yes|refund=no and M.S. = S)= P(cheat=yes)P(refund=no and MS=S| cheat = yes) / P(refund = no and M.S. = S)
+ = P(cheat = yes) P(refund=no and MS=S | cheat = yes) / P(refund = no and MS = S | cheat = yes)P(cheat=yes) + p(refund = no and MS = S|cheat=no)P(cheat=no)
+
+Advantage:
+incorporates all the variables 
+useful in practice (simple to use)
+
+
+Disadvantage:
+assumes independance
+not human interpretable
 
 
 
