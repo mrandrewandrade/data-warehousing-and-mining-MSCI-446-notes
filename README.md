@@ -1,4 +1,5 @@
 # Part 1: Review
+
 data on cloud
 using data to change world
 data analytics for sustanability
@@ -330,6 +331,12 @@ Tuesday: complicated
 
 P(A|B)  = P(A) P(B|A) / P(B)
 
+
+
+### Bayesian Classification
+
+Discrete variable.
+
 num | refund | maritial status | cheat?|
 
 Use Naive Bayes to predict the value of cheat given that refund = no and M.S. = single (S)
@@ -349,6 +356,150 @@ useful in practice (simple to use)
 Disadvantage:
 assumes independance
 not human interpretable
+
+### Naive bayes with numeric features
+
+Look at example .pdf
+
+Play golf based on termperature
+
+There is no prior prability for a specific temperature (because it is continous)
+
+What were the examples on non-normal distribution?
+
+
+### Decision tree
+
+Used to do classification of discrete variable.
+
+First use entropy to probability districution
+
+Eg. Roll a 6 sided die
+1/6th of each side (unless dishonest casino)
+Is there chaos in distribution?
+Yes -> you don't konw what is going to happen.
+
+What if 1 or 0 where one is 95% probablitily
+-> more certainty
+
+How do we formalize this?  
+
+### Enthropy!
+
+Say X is a random variable, with the following probability distribution:
+
+X = x1 with probability p1
+
+X = x2 with pr. p2
+
+x = xn with pr. pn
+
+The entropy of X denoted H(x) = -p1 log2 (p1) - p2 log2(p2) - ... - pn log2 pn
+
+Observations:
+
+1. Complete certainty => H(X) = 0
+X = x1 with pr 1, P(X=x) = 1
+H(x) = -1 log2 1 - 0 log2 (0) - 0 log2 (0) - ...
+     = -1.0 -0 -0 = 0
+2. P (X=x1) = P1 = 1/2, P(X = x2) = p2 = 1/2
+H(x) = -1/2 log2 1/2 - 1/2 log2 1/2
+     = -1/2 * -1 - 1/2 * -1 = 1/2 + 1/2 = 1
+3. P1 = 1/4, P2 = 1/4, P3 = 1/4, P4 = 1/4
+H(x) = -1/4 (-2) * 4 = 2
+
+|Refund|marital status|cheat|
+
+
+2 choices for the root of the tree
+
+refund
+/ \
+y  n 
+
+When yes:
+3 cheat = no
+0 cheat = yes
+p1 = 3/3
+p2 = 0/3
+
+H(x) = -1 log2 1 - 0 log 0 = 0
+
+4 cheat = no
+3 cheat = yes
+p1 = 4/7 
+p2 = 3/7 
+
+H(x) = -4/7 log2 4/7 - 3/7 log2 3/7 = 0.98
+
+Marital status
+/     |     \
+single maried divorced
+
+single
+2 cheat = no
+2 cheat = yes
+p1 = 1/2
+p2 = 1/2
+
+H(x) = 1
+
+
+married
+4 cheat = no
+0 cheat = yes
+p1 = 4/4
+p2 = 0/4
+
+H(x) = 0
+
+
+divorced
+1 cheat = no
+1 cheat = yes
+p1 = 1/2
+p2 = 1/2
+H(x) = 1
+
+At bottom of tree which want low entropy (as close to 0 as possible)
+
+1. Now we need to calculate entropy for each
+2. Calculate weighted average entropy of refund
+
+Weighted average entrpy of REFUND:
+3/10 * 0 + 7/10 * 0.98 = 0.69
+
+Weight average entropy of marital status
+4/10 * 1 + 4/10*0 + 2/10 * 1 = 0.6
+
+Maritial status has lowest entropy, therefore at the top
+
+        MS
+    /   |   \
+Single Married Divorces
+  /      |          \   
+refund  cheat = no  refund
+/   \    |
+
+
+cheat = no     refund
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
