@@ -1,152 +1,158 @@
 # Part 1: Review
 
-data on cloud
-using data to change world
-data analytics for sustanability
-eduational data mining
+* Data in the cloud (warehousing)
+* Using data to change world
+* Data analytics for sustainability
+* Educational data mining
 
-datamining
-exam project
+Data Mining course evaluations: exam (no python), project
 
-1/ design questions
+1/ design questions  
 proxy for a feature
 
+Implicit and hidden information from data  
+Finding patterns
 
-implicit and hidden informatoin from data
-finding patterns
+What do managers do?  
+They make decisions and make big bucks
 
-What do manager's do?
-They make desisions and make big bucks
+## Discrete vs. Continuous variables
 
-## Discrete vs continous variables
+1. Discrete (categorical variables)  
+  1b. boolean or binary variable (special case)
+2. Continuous (numberical variables)
 
-1/ discrete (categorical variables)
-2/ continous (numberical variables)
-1b/ boolean or binary variable
+Numeric -> Categorical conversion  
+Normalization -> making range between 0 and 1
 
-Numeric -> categorical conversion
-Normalization -> putting variable between 0 and 1
+## Data Mining
 
-## Data mining
 
 ### Predictive analytics (supervised learning)
 Use variables to predict others
 
-#### Classification -> discrete prediction
-*Objective*: predict values of the class variable for new data
+#### Classification -> Discrete Prediction
+*Objective*: predict values of the class variable for new data  
 *How?* Build a model for the class variable as a function of the feature variables
 
 - has a specific class variable/ attribute/ label
 - features or inputs to the system
-- training dataset
+- input must be training dataset
 
-#### Regression -> numeric prediction
+E.g. Decision Tree for predicting loan application:  
+````
+Income < 50k --> Loan = No  
+Income >= 50k -->
+            Gender = F --> Loan = Yes  
+            Gender = M -->
+                  Credit < 700 --> Loan = no  
+                  Credit >= 700 --> Loan = Yes
+````
 
-Think Scatter plot
-Msci 466 grade vs hours of study
+#### Regression -> Numeric Prediction
 
-Table: 
-|hours of study| grade|
-|data1|data1|
-|...|...|
-|endofdata|endofdata|
+Think Scatter plot.
+Eg: MSci 446 grade vs. hours of study
 
-Supervised
+Table:
+
+|Hours of study | Grade|
+|---------------|:----:|
+|data1          | data1|
+|...            |   ...|
 
 y = mx +b
 y = m1 X1 + m2 x2 + m3 x3 ... mk xk + b
 
-feature engineering -> determing inputs to system
+* Supervised
+* Feature engineering -> determining inputs to system  
+
+Eg: Movie revenue prediction project in prev years, determining appropriate m1, m2, and adding **m3 x is_franchise** bool to help with predictions.
 
 ### Descriptive analytics (unsupervised learning)
-Describing an existing event
+Describing an existing data set
 
-#### Association -> see which variables are associated with each other
-store keeps tracked of which products are bought togeather
+#### Association
+* see which variables are associated with each other
+* no class variables
+
+Eg:
+Store keeps track of which products are purchased together.
 2 examples:
 
-1/ data set x1 ... xk
-Note: no class variable
-
-Rows are binary
-
+1/ data set x1 ... xk of binary rows
 meaning of x1: things people bought in a store
-item set, 1 has specific things bought
+Single row is an itemset of a single --> very sparse table
 
-Association: shows what goes togeather
-x1 x6 -> x8
-
+Association: shows what goes together  
+Eg: if x1 and x6 -> x8  
 Algorithm -> determines probability
+Can use Association for missing value imputation
 
-Can use association for missing value imputation
+Eg: MillionSongDataSet had a lot of words of profanity came associated.
 
-#### Clustering 
+**Why should business care?**
+- if bread and butter go together, then maybe promote butter to sell more bread
+- make predictions on butter based on bread demand
+- or predict impact of discontinuing butter on bread
 
-Grouping based on variables
+You can take Classification data and run Association on it. Association is more general than classification.  
+Eg: Which Eng. program quiz? Find associations, predict missing values.
 
-Msci 446 grade vs hours of study
+#### Clustering
+- grouping based on variables
+- splits your data into meaningful sets
+- eg. how many different kinds of customers
+- tightly connected groups with similar characteristics
 
-Output of clustering of algorithm: column at the end of dataset which labels each data set
+Eg. Msci 446 grade vs hours of study
 
-Get the center of each cluster -> present that
+Output of clustering of algorithm: column at the end of dataset which determines *Cluster Membership*
 
-#### Outlier detection
+*Cluster centre* - a good representative from the middle of the cluster.
 
-Points that stand out
+#### Outlier/Anomaly Detection
+
+Data that stand out
 
 Dedicated algorithms to outlier detection
 
-By-product of other data mining tasks
+By-product of other data mining tasks (i.e Clustering, regression)
 
 Clustering -> far from the center of cluster
 
-Iterpret:
-1. real world has measurement errors
-2. people behave diffrently
+Interpret:
+1. Measurement errors/ bad data
+2. Real people behave differently/ not everyone fits the model
 
-Story: from Database
-Setting zip code as null
+Garbage in/Garbage out: -->  
+Story: Police Dept. set Homeless people's ZipCodes as dept's address, then data mining found police dept. as a crime hive.
 
-garbage in garbage out problem
-
-Use outlier detectionto fix data (might or might not be correct)
+Use outlier detection fix data (might or might not be correct)
 
 ### Summary of the course in 10 minutes
 
 #### Issues in Data mining
-1. computational complexity
-
-Can't evaluate all models 
-
-2. validation or evaluation
-How to pick the best algorithm?   
-Test of a small set of data
-
-3. data skew
-Data can be misleading:
-
-- downsampling
-keep all no's and sa
-
-- upsampling
-keep all the yeses and you sample with replacement to get you more no's
-
-sampling with replacement 
+1. Computational complexity
+  - Can't evaluate all models
+2. Validation or evaluation
+  - How to pick the best algorithm?   
+    - Test with smaller set of data
+3. Data skew.
+Data can be misleading, to mitigate:
+  - downsampling:
+keep all no's and reduce your yes's
+  - upsampling:
+keep all the yes's and you sample with replacement to get you more no's
+  - Sampling with replacement -->
 draw from dataset, draw another put it back in
-
-sampling without replacement
+  - Sampling without replacement -->
 draw from dataset put it aside, draw another from dataset put it aside
-
 4. Intepretation
-
-Human in the loop is necessary to understand
-Made from subset of population
-
-Datamining does stereotyping by default
-
-eg. banking
-take credit score and stereo on it
-
+  - Human in the loop (domain expertise) is necessary to understand
+  - Made from subset of population
+  - Data Mining does stereotyping by default
+  - Eg. banking --> take credit score and steretype on it
 5. Ethics/Data Privacy
 
 
@@ -155,7 +161,7 @@ take credit score and stereo on it
 Before you start data mining:
 
 - numeric: mean, median, standard deviation, percentiles, min value, max value
-- histogram: 
+- histogram:
 heavy tailed distribution
 bimodal distribution
 
@@ -264,7 +270,7 @@ It linearizes the model so linear regression can be used on non-linear relations
 
 Corelate electricity consumption vs outdoor temperature
 
-cooling gradient -> proxy for insulation and efficiency 
+cooling gradient -> proxy for insulation and efficiency
 
 ### Variable Selection / Feature engineering
 
@@ -278,17 +284,17 @@ Try each variable one by one and find the one the lowest sum of squares error
 - not used in practice
 
 2. Backward Selection
-Try with all the variables and remove the worse one (greedy algorithm) 
+Try with all the variables and remove the worse one (greedy algorithm)
 - has python implementation
 3. Shrinkage
-LASSO: uses matrix algebra to shrink coefficient to help with eliminating 
+LASSO: uses matrix algebra to shrink coefficient to help with eliminating
 
 ### Remove Outliers
 - can remove good data if it doesn't fit the model
 - linear regression is a model of convenient fiction
 "Linearize the model simplifes the model based on the data you have"
 
-# Part 4 
+# Part 4
 
 ## Classification
 ### Baysian Classification
@@ -349,7 +355,7 @@ P(cheat=yes|refund=no and M.S. = S)= P(cheat=yes)P(refund=no and MS=S| cheat = y
  = P(cheat = yes) P(refund=no and MS=S | cheat = yes) / P(refund = no and MS = S | cheat = yes)P(cheat=yes) + p(refund = no and MS = S|cheat=no)P(cheat=no)
 
 Advantage:
-incorporates all the variables 
+incorporates all the variables
 useful in practice (simple to use)
 
 
@@ -415,7 +421,7 @@ H(x) = -1/4 (-2) * 4 = 2
 
 refund
 / \
-y  n 
+y  n
 
 When yes:
 3 cheat = no
@@ -427,8 +433,8 @@ H(x) = -1 log2 1 - 0 log 0 = 0
 
 4 cheat = no
 3 cheat = yes
-p1 = 4/7 
-p2 = 3/7 
+p1 = 4/7
+p2 = 3/7
 
 H(x) = -4/7 log2 4/7 - 3/7 log2 3/7 = 0.98
 
@@ -483,27 +489,3 @@ refund  cheat = no  refund
 
 
 cheat = no     refund
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
