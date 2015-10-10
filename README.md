@@ -160,18 +160,20 @@ draw from dataset put it aside, draw another from dataset put it aside
 
 Before you start data mining:
 
-- numeric: mean, median, standard deviation, percentiles, min value, max value
-- histogram:
-heavy tailed distribution
-bimodal distribution
+- numeric: µean, median, standard deviation, percentiles, min value, max value
+- histograms: watch for -->
+  - heavy tailed distribution
+  - bimodal distribution
+  - left skew/right skew
 
-discrete variables:
+Discrete variables:
 - list possible values and their frequencies
 - count distinct
-- identify and frequency of most and least frequent values
+- identify and find the frequency of most and least frequent values --> check for data quality/spot outliers
 
 Text:
 - word clouds
+- make sure data is suitable for data mining
 
 # Part 3: Data Mining
 
