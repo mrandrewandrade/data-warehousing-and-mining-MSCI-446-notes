@@ -302,9 +302,9 @@ OK to remove outliers for building models
 # Part 4
 
 ## Classification
-### Baysian Classification
+### Bayesian Classification
 
-Baye's Theorem
+Bayes' Theorem
 
 P (A|B) = P(B|A) = P(B|A) P(A) / P(B)
 
@@ -312,7 +312,7 @@ P (A|B) = P(B|A) = P(B|A) P(A) / P(B)
 
 - A dishonest casino has a 99% fair dice and 1% loaded dice, where:
 
-fair: (1) = P (2) = P (3) = P (4) = P(5) = P(6) = 1/6    
+fair: P (1) = P (2) = P (3) = P (4) = P(5) = P(6) = 1/6    
 
 loaded: P (1) = 0.1, P(2) = 0.1, P(3) = 0.1, P(4) = 0.1, P(5) = 0.1, P(6) = 1/2
 
@@ -320,25 +320,22 @@ Compute P(loaded | rolled 3 consecutive times)
 
 P(A|B) = P(B | A) P(A) / P(B)
 
-= P(0.5*0.5*0.5) * P(0.01) / (1/6^3* 0.99 + 1/2^2*0.01)
+= P(0.5 x 0.5 x 0.5) x P(0.01) / ((1/6)^3 x 0.99 + (1/2)^2 x 0.01) = 0.21
 
-prior probability
+What is the value of a class variable C given the values of the feature variables Xi through Xk?
 
-posterior probability
-
-What is the value of a class variable C given the values of the feature variables x through xk?
-
-P( pay off load = yes | credit = .. and marital status = .. and years with current employer = .. )
+P( pay off loan = yes | credit = .. and marital status = .. and years with current employer = .. )
  = P(features | class ) P (class) / P(features)
 
-Major assumption: features are independant
+Major assumption: features are independent.
 
-Naive bayes -> this approach in tutorial
+P ( class | features ) = P ( features | class ) x P ( class ) / P ( features )
+
+Naive Bayes -> this approach in tutorial
 
 Friday: simple example
 
-Tuesday: complicated
- Read example on course website
+Tuesday: complicated --> Read example on course website
 
 P(A|B)  = P(A) P(B|A) / P(B)
 
@@ -354,21 +351,27 @@ Use Naive Bayes to predict the value of cheat given that refund = no and M.S. = 
 
 P(A|B) <- posterior probability
 P(A) <- prior
-P(b|A) <- likely hood
+P(B|A) <- likelyhood
+````
+P( cheat=yes | refund=no and MS=S )
+= P( cheat=yes ) x P( refund=no and MS=S | cheat=yes ) / P( refund=no and MS=S )
+= P( cheat=yes ) x P( refund=no and MS=S | cheat=yes ) / P( refund=no and MS=S | cheat=yes) x P( cheat=yes ) + P( refund=no and MS=S | cheat=no ) x P( cheat=no )
+= ( 3/10 x 1 x 2/3 ) / (3/10 x 1 x 2/3 + 4/7 x 2/7 x 7/10)
+= 7/11
 
-P(cheat=yes|refund=no and M.S. = S)= P(cheat=yes)P(refund=no and MS=S| cheat = yes) / P(refund = no and M.S. = S)
- = P(cheat = yes) P(refund=no and MS=S | cheat = yes) / P(refund = no and MS = S | cheat = yes)P(cheat=yes) + p(refund = no and MS = S|cheat=no)P(cheat=no)
+Class variable is binary --> Answer: cheat = yes [with 7/11 probability]
+````
 
 Advantage:
-incorporates all the variables
-useful in practice (simple to use)
+- incorporates all the variables
+- useful in practice (simple to use)
 
 
 Disadvantage:
-assumes independance
-not human interpretable
+- assumes independence
+- not human interpretable
 
-### Naive bayes with numeric features
+### Naive Bayes with numeric features
 
 Look at example .pdf
 
@@ -383,19 +386,19 @@ What were the examples on non-normal distribution?
 
 Used to do classification of discrete variable.
 
-First use entropy to probability districution
+First use entropy to probability distribution
 
-Eg. Roll a 6 sided die
-1/6th of each side (unless dishonest casino)
-Is there chaos in distribution?
-Yes -> you don't konw what is going to happen.
+Eg. Roll a 6 sided die  
+1/6th of each side (unless dishonest casino)  
+Is there chaos in distribution?  
+Yes -> you don't know what is going to happen
 
 What if 1 or 0 where one is 95% probablitily
 -> more certainty
 
 How do we formalize this?  
 
-### Enthropy!
+### Entropy!
 
 Say X is a random variable, with the following probability distribution:
 
@@ -403,30 +406,36 @@ X = x1 with probability p1
 
 X = x2 with pr. p2
 
-x = xn with pr. pn
+X = xn with pr. pn
 
 The entropy of X denoted H(x) = -p1 log2 (p1) - p2 log2(p2) - ... - pn log2 pn
 
 Observations:
-
+````
 1. Complete certainty => H(X) = 0
-X = x1 with pr 1, P(X=x) = 1
+X = x1 with pr 1, P( X=x) = 1
 H(x) = -1 log2 1 - 0 log2 (0) - 0 log2 (0) - ...
-     = -1.0 -0 -0 = 0
-2. P (X=x1) = P1 = 1/2, P(X = x2) = p2 = 1/2
+     = -1.0 - 0 - 0 = 0
+2. P( X=x1 ) = P1 = 1/2, P( X=x2 ) = p2 = 1/2
 H(x) = -1/2 log2 1/2 - 1/2 log2 1/2
      = -1/2 * -1 - 1/2 * -1 = 1/2 + 1/2 = 1
 3. P1 = 1/4, P2 = 1/4, P3 = 1/4, P4 = 1/4
 H(x) = -1/4 (-2) * 4 = 2
+````
+Furthermore:
+- with 4 variables with equal Pr --> H(x) = 3 (becase log base2)
+- Pr that are not equal to each other < H(x) than equal ones
+- Entropy is never negative
 
 |Refund|marital status|cheat|
 
 
-2 choices for the root of the tree
+2 choices for the root of the tree: Refund vs. Marital Status
 
-refund
-/ \
-y  n
+````
+Refund
+  / \
+ y   n
 
 When yes:
 3 cheat = no
@@ -443,11 +452,13 @@ p2 = 3/7
 
 H(x) = -4/7 log2 4/7 - 3/7 log2 3/7 = 0.98
 
-Marital status
-/     |     \
-single maried divorced
 
-single
+    Marital status
+  /       |       \
+single married divorced
+
+
+Single
 2 cheat = no
 2 cheat = yes
 p1 = 1/2
@@ -456,7 +467,7 @@ p2 = 1/2
 H(x) = 1
 
 
-married
+Married
 4 cheat = no
 0 cheat = yes
 p1 = 4/4
@@ -465,32 +476,32 @@ p2 = 0/4
 H(x) = 0
 
 
-divorced
+Divorced
 1 cheat = no
 1 cheat = yes
 p1 = 1/2
 p2 = 1/2
 H(x) = 1
+````
 
-At bottom of tree which want low entropy (as close to 0 as possible)
+At bottom of tree we want low entropy (as close to 0 as possible)
 
 1. Now we need to calculate entropy for each
 2. Calculate weighted average entropy of refund
 
-Weighted average entrpy of REFUND:
-3/10 * 0 + 7/10 * 0.98 = 0.69
+WAE - Weighted Average Entropy of REFUND:  
+= 3/10 x 0 + 7/10 x 0.98 = 0.69
 
-Weight average entropy of marital status
-4/10 * 1 + 4/10*0 + 2/10 * 1 = 0.6
+Weight Average Entropy of Marital Status:  
+= 4/10 * 1 + 4/10*0 + 2/10 * 1 = 0.6
 
-Maritial status has lowest entropy, therefore at the top
-
-        MS
-    /   |   \
-Single Married Divorces
-  /      |          \   
-refund  cheat = no  refund
-/   \    |
-
-
-cheat = no     refund
+Marital status has lowest entropy, --> it goes to the top
+````
+                MS
+            /   |   \
+        Single Married Divorces
+          /      |        |         \   
+      refund  cheat=no  refund=yes  refund=no
+      /   \               |             \
+cheat=no  cheat=yes   cheat=no        cheat=yes
+````
