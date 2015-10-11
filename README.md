@@ -57,7 +57,7 @@ Eg: MSci 446 grade vs. hours of study
 Table:
 
 |Hours of study | Grade|
-|---------------|:----:|
+|:-------------:|:----:|
 |data1          | data1|
 |...            |   ...|
 
@@ -148,7 +148,7 @@ keep all the yes's and you sample with replacement to get you more no's
 draw from dataset, draw another put it back in
   - Sampling without replacement -->
 draw from dataset put it aside, draw another from dataset put it aside
-4. Intepretation
+4. Interpretation
   - Human in the loop (domain expertise) is necessary to understand
   - Made from subset of population
   - Data Mining does stereotyping by default
@@ -184,31 +184,29 @@ Text:
 #### Least squares linear regression (LSLR)
 
 Input:
+
 |id | x | y | ŷ | y-ŷ|
-|p1 | 1 | 2 | 1 | 1|
-|p2 | 1 |1 | 1 | 0 |
-....
+|--:|--:|--:|--:|:--:|
+|p1 | 1 | 2 | 1 | 1  |
+|p2 | 1 | 1 | 1 | 0  |
+|p3 | 3 | 2 | 3 |-1  |
 
-make plot
+Make plot
 
+y - ŷ <- called residual = observed - predicted   
 
-
-y- ŷ <- called residual = observed - predicted   
-
-Supose we obtain in the following linear model:       
+Suppose we obtain in the following linear model:       
 y = x    
 
-Sum of the squares residuals =  \sum (y- \hat{y} )^{2}           
-
+Sum of the squares residuals =  \sum (y- \hat{y} )^{2}
 ![](http://www.sciweavers.org/tex2img.php?eq=%20%5Csum%20%28y-%20%5Chat%7By%7D%20%29%5E%7B2%7D%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 
+SSQ --> L.S.L.R. optimizes this metric   
 
-L.S.L.R. optimizes this metric   
+Mean Squared Error (MSE) = SSQ / num of data points   
+Root Mean Squared Error (RMSE) = sqrt (MSE)    
 
-mean squared error (MSE) = SSQ / num of data points   
-root mean squared error (RMSE) = sqrt (MSE)    
-
-in example:   
+In example:   
 SSQ = 1^2 + 0^2 + (-1)^2 + 0^2 + 0^2 = 2   
 MSE = 2/5   
 RMSE = sqrt (2/5)   
@@ -217,14 +215,14 @@ Residual plot y - ŷ vs x
 
 put plot
 
-Distribution of residuals   
+Distribution of Residuals   
 
-frequency vs y - ŷ   
+Frequency vs y - ŷ   
 
 put histogram
 
-If x and y are indeed linearly related, the distribution of residuals should be normal and centered around zero
-Also the residual plot should not have any patterns (under/over estimation)
+- If x and y are indeed linearly related, the distribution of residuals should be normal and centered around zero
+- Residual plot should not have any patterns (under/over estimation bias)
 
 Suppose y is EXPONENTIALLY related to X
 
@@ -233,17 +231,16 @@ put plot
 put residual plot
 
 ### Log transform:
-
+````
 y = b e^x
-
 ln y = ln (b e^x)
-      = ln b + ln e^x
-      = ln b + x
-
+     = ln b + ln e^x
+     = ln b + x
+````
 
 ## More on least squares
 
-- least-squares linear regression optimizes SSQ/RSS
+- least-squares linear regression optimizes SSQ/RSS (name in python) _<-- hinted at inclusion in Exam_
 
 - goodness of fit
 y = m1x1 + m2x2 + .... + mxkx + b
@@ -254,6 +251,8 @@ Residual Plot
 Residual Distribution
 - on for each model
 
+If the fit is no good --> Log Transform
+
 ### Another example of log transform
 
 TODO: typset the equations
@@ -263,16 +262,16 @@ What is the point?
 
 It linearizes the model so linear regression can be used on non-linear relationships
 
-### Piecewise Linear Regeression
-
+### Piecewise Linear Regression
 
 - called segmented regression in R
 
-#### Example: electricity in households
+#### Example: electricity use in households
 
-Corelate electricity consumption vs outdoor temperature
+Correlate electricity consumption vs. outdoor temperature
 
-cooling gradient -> proxy for insulation and efficiency
+Cooling gradient -> proxy for insulation and efficiency of AC
+Heating gradient -> proxy for insulation and efficency of furnace
 
 ### Variable Selection / Feature engineering
 
@@ -283,18 +282,22 @@ Three techniques:
 
 1. Forward Selection
 Try each variable one by one and find the one the lowest sum of squares error
-- not used in practice
-
-2. Backward Selection
-Try with all the variables and remove the worse one (greedy algorithm)
-- has python implementation
+  - not used in practice
+2. Backward Selection (more practical than FS)
+Try with all the variables and remove the worse one (greedy algorithm) (bad variable = highest impact on SSQ)
+  - has python implementation
 3. Shrinkage
-LASSO: uses matrix algebra to shrink coefficient to help with eliminating
+  - LASSO: uses matrix algebra to shrink coefficient to help with eliminating variables
 
-### Remove Outliers
+Why not use all the variables/features? --> Risk of overfitting
+
+Linear regression is very sensitive to outliers.
+OK to remove outliers for building models
+
+#### Risks of removing Outliers
 - can remove good data if it doesn't fit the model
 - linear regression is a model of convenient fiction
-"Linearize the model simplifes the model based on the data you have"
+"Linearize the model simplifies the model based on the data you have"
 
 # Part 4
 
