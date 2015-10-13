@@ -484,6 +484,36 @@ refund  cheat = no  refund
 
 cheat = no     refund
 
+Midterm: up to and including topic number 7.
+
+Half of midterm: similar to practice questions
+Other half: thinking questions
+
+# 1R / One-R algorithm 
+
+Data from class
+Collect gender, device, glasses, front?
+
+For gender:  
+if gender M then FRONT = NO
+2m Front = yes
+20M front = no
+
+if gender = F then FRONT = Yes
+12 f front = yes
+4f front = no
+
+For device:
+If device = yes then front  = no
+3 front = yes
+11 front = no
+
+if decide = no then front = no
+11 front = yes
+13 front = no
+
+
+
 
 
 
